@@ -5,7 +5,15 @@ function updateBadge() {
         let silentMode = data.silentMode ?? true;
 
         let text = enabled ? "ON" : "OFF";
-        let color = enabled ? (silentMode ? [128, 128, 128, 255] : [0, 255, 0, 255]) : [255, 0, 0, 255];
+        let color; 
+        
+        if (!enabled) {
+            color = [255, 0, 0, 255];  // Red for Disabled
+        } else if (silentMode) {
+            color = [128, 128, 128, 255];  // Gray for Silent Mode ON
+        } else {
+            color = [0, 255, 0, 255];  // Green for Active
+        }
 
         chrome.action.setBadgeText({ text });
         chrome.action.setBadgeBackgroundColor({ color });
