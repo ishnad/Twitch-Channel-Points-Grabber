@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "Twitch Channel Points Grabber",
+  "version": "1.0",
+  "description": "Automatically collects Twitch Channel Points.",
+  "permissions": ["scripting", "activeTab"],
+  "host_permissions": ["https://www.twitch.tv/*"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.twitch.tv/*"],
+      "js": ["content.js"]
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icon16.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    }
+  }
+}
