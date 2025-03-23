@@ -1,3 +1,10 @@
-chrome.runtime.onInstalled.addListener(() => {
-    console.log("Twitch Channel Points Grabber Extension Installed!");
+chrome.runtime.onMessage.addListener((message) => {
+    if (message.type === "notify") {
+        chrome.notifications.create({
+            type: "basic",
+            iconUrl: "icon48.png",
+            title: "Twitch Auto Points",
+            message: message.message
+        });
+    }
 });
