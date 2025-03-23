@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     const toggleButton = document.getElementById("toggleButton");
     const silentModeButton = document.getElementById("silentModeButton");
 
-    // Function to update UI and badge
     async function loadSettings() {
         return new Promise((resolve) => {
             chrome.storage.local.get(["enabled", "silentMode"], (data) => {
@@ -12,9 +11,10 @@ document.addEventListener("DOMContentLoaded", async () => {
                 toggleButton.textContent = enabled ? "Disable Auto Collect" : "Enable Auto Collect";
                 silentModeButton.textContent = silentMode ? "Silent Mode: OFF" : "Silent Mode: ON";
 
-                // Update badge
-                chrome.runtime.sendMessage({ type: "updateBadge" });
+                // Disable the Silent Mode button if Auto Collect is OFF
+                silentModeButton.disabled = !enabled;
 
+                chrome.runtime.sendMessage({ type: "updateBadge" });
                 chrome.storage.local.set({ enabled, silentMode }, resolve);
             });
         });
@@ -28,6 +28,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         await chrome.storage.local.set({ enabled: newState });
 
         toggleButton.textContent = newState ? "Disable Auto Collect" : "Enable Auto Collect";
+        silentModeButton.disabled = !newState; // Disable Silent Mode button if Auto Collect is OFF
         chrome.runtime.sendMessage({ type: "updateBadge" });
     });
 
