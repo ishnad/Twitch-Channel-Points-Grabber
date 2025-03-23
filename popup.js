@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 let silentMode = data.silentMode ?? true;
 
                 toggleButton.textContent = enabled ? "Disable Auto Collect" : "Enable Auto Collect";
-                silentModeButton.textContent = silentMode ? "Silent Mode: ON" : "Silent Mode: OFF";
+                silentModeButton.textContent = silentMode ? "Silent Mode: OFF" : "Silent Mode: ON";
 
                 // Update badge
                 chrome.runtime.sendMessage({ type: "updateBadge" });
