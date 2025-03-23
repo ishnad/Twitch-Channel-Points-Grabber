@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Twitch Channel Points Grabber",
-  "version": "1.1",
+  "version": "1.2",
   "description": "Automatically collects Twitch Channel Points with on/off toggle and silent mode.",
   "permissions": ["storage", "scripting", "activeTab", "notifications"],
   "host_permissions": ["https://www.twitch.tv/*"],
@@ -21,5 +21,10 @@
       "48": "icon48.png",
       "128": "icon128.png"
     }
+  },
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
   }
 }
