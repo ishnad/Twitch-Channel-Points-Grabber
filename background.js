@@ -5,7 +5,7 @@ function updateBadge() {
         let silentMode = data.silentMode ?? true;
 
         let text = enabled ? "ON" : "OFF";
-        let color; 
+        let color;
         
         if (!enabled) {
             color = [255, 0, 0, 255];  // Red for Disabled

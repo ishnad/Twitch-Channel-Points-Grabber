@@ -33,11 +33,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
 
     silentModeButton.addEventListener("click", async () => {
-        const { silentMode } = await chrome.storage.local.get("silentMode");
-        let newState = !silentMode;
+        const { silentMode: currentSilentMode } = await chrome.storage.local.get("silentMode");
+        let newState = !currentSilentMode;
         await chrome.storage.local.set({ silentMode: newState });
 
-        silentModeButton.textContent = newState ? "Silent Mode: ON" : "Silent Mode: OFF";
+        const newText = newState ? "Silent Mode: OFF" : "Silent Mode: ON";
+        silentModeButton.textContent = newText;
         chrome.runtime.sendMessage({ type: "updateBadge" });
     });
 });
